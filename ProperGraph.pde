@@ -1,4 +1,4 @@
-//plan is to make this a class
+//plan is to make this a class //<>//
 PFont font;
 float scale=0.8;
 float xmin = 2.;

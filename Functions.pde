@@ -1,3 +1,4 @@
+
 void pt(float x,float y,float size,color col){
   int fillColor = g.fillColor; //save current
   int strokeColor = g.strokeColor; //save current
