@@ -1,5 +1,6 @@
 //plan is to make this a class
-float scale=0.9;
+PFont font;
+float scale=0.8;
 float xmin = 2.;
 float xmax = 9.;
 float xnumbox = 8;
@@ -12,8 +13,9 @@ PVector rt; //lower right corner
 PVector v; //a temporary vector
 color red = #ff0000;
 void setup(){
-  size(800,800);
-  topCornerX=round((1-scale)*width-10);
+  size(1900,1000);
+  font = createFont("Tahoma",16,true); //16 point, anti-aliasing on
+  topCornerX=round((1-scale)*width-width/16);
   topCornerY=round((1-scale)*height/3);
   zeroZero = new PVector(topCornerX,height*scale+topCornerY);
   rt = new PVector(zeroZero.x+scale*width,zeroZero.y);
@@ -22,16 +24,19 @@ void setup(){
 
 void draw(){
   background(255);
+  textFont(font,36); //specify font & size for the next text command
   noFill();
   stroke(#000000);
   strokeWeight(3);
-  rect(topCornerX,topCornerY,scale*height,scale*height);
-  
+  rect(topCornerX,topCornerY,scale*width,scale*height); //draws the rectangle
+  fill(#000000); //fill for tic marks
   //draw the x-axis tic marks
   float  m=(rt.x-zeroZero.x)/xnumbox;
   for(int i=0; i<xnumbox+1; i++){
     float tix=zeroZero.x+m*i;
     line(tix,zeroZero.y,tix,zeroZero.y-20);
+    fill(#000000); //textcolor
+    text(str(i),tix-.01*width,zeroZero.y+.05*height);
   } //end for
   
   //draw the y-axis tic marks
@@ -42,9 +47,3 @@ void draw(){
      line(zeroZero.x,tix,zeroZero.x+20,tix);
   } //end for  
   } //end draw
-
-  
-  
-  
-   //<>//
-  
