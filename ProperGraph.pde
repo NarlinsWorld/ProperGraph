@@ -1,4 +1,4 @@
-
+//plan is to make this a class
 float scale=0.9;
 float xmin = 2.;
 float xmax = 9.;
