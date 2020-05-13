@@ -1,10 +1,12 @@
 //plan is to make this a class //<>//
 PFont font;
-float scale=0.8;
-float xmin = 2.;
-float xmax = 9.;
-float xnumbox = 8;
-float ynumbox = 8;
+float scale=.7;
+float xmin = 0;
+float xmax = 800;
+float xnumbox = 20;
+float ymin = 0;
+float ymax = 20;
+float ynumbox = 5;
 
 int topCornerX;
 int topCornerY;
@@ -31,19 +33,33 @@ void draw(){
   rect(topCornerX,topCornerY,scale*width,scale*height); //draws the rectangle
   fill(#000000); //fill for tic marks
   //draw the x-axis tic marks
-  float  m=(rt.x-zeroZero.x)/xnumbox;
-  for(int i=0; i<xnumbox+1; i++){
+  //determine the maximum xnumber length
+     int xnlen = numlen(xmin,xmax,xnumbox);
+  float  m=(rt.x-zeroZero.x)/xnumbox;  
+  for(int i=0; i<floor(xnumbox+1); i++){
     float tix=zeroZero.x+m*i;
     line(tix,zeroZero.y,tix,zeroZero.y-20);
     fill(#000000); //textcolor
-    text(str(i),tix-.01*width,zeroZero.y+.05*height);
+    //if the numbers all have zero decimals, then omit the decimal
+    String xnumber = str(xmin+i*(xmax-xmin)/xnumbox);
+    if((xmax-xmin)%xnumbox==0){ //this is the number thats printed
+       xnumber = xnumber.substring(0, xnumber.length() - 2);}        
+    text(xnumber,tix-xnlen*.005*width,zeroZero.y+.04*height);
   } //end for
   
   //draw the y-axis tic marks
+  //determine the maximum ynumber length
+     int nlen = numlen(ymin,ymax,ynumbox);
   m = (topCornerY-zeroZero.y)/ynumbox;
   for(int i=0; i<ynumbox+1; i++){
      float tix = zeroZero.y+m*i;
-     println(tix," ",i);
      line(zeroZero.x,tix,zeroZero.x+20,tix);
+     //if the numbers all have zero decimals, then omit the decimal
+     String ynumber = str(ymin+i*(ymax-ymin)/ynumbox);
+     if((ymax-ymin)%ynumbox==0){ //this is the number thats printed
+       ynumber = ynumber.substring(0, ynumber.length()-2);}
+     text(ynumber,zeroZero.x-.0125*nlen*width,tix+.012*height);
   } //end for  
   } //end draw
+  
+  
