@@ -19,4 +19,6 @@ void pt(float x,float y,float size,color col){
     nlen = max(nlen,mlen);
     if((nmax-nmin)%numbox==0 && nlen>2){nlen = nlen -2;}
     return nlen;
-  }
+  } // end numlen
+  
+  
