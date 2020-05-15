@@ -1,5 +1,7 @@
-Add x & y title possibilities
-Add Documentation
-Look at how to turn most of the main program into a class
-Explain how to add x,y data points
-Show how to plot functions.
+1. Add x & y title possibilities
+2. Continue Adding to the Documentation
+   Explain how to add x,y data points
+   Document how to plot functions.
+3. Currently, it can only graph x & y points. Make it so that
+   there is an option to connect the points with a line and
+   show or not show the poins.
