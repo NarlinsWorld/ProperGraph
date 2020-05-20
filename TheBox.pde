@@ -10,6 +10,9 @@ class BoxGraph {
   float ynumbox = 10;
   int fsize = 16;
   color col = #000000;
+  String yAxisLabel = "";
+  String xAxisLabel = "";
+  
 
   int topCornerX;
   int topCornerY;
@@ -24,7 +27,7 @@ class BoxGraph {
   float m;
   
   //constructor
-  BoxGraph(float tscale,float tXmin, float tXmax, float txbox, float tYmin, float tYmax, float tybox, String tFont, int tfsize) {
+  BoxGraph(float tscale,float tXmin, float tXmax, float txbox, float tYmin, float tYmax, float tybox, String tFont, int tfsize, String txAxisLabel, String tyAxisLabel) {
   scale = tscale;
   xmin = tXmin;
   xmax = tXmax;
@@ -33,6 +36,8 @@ class BoxGraph {
   ymax = tYmax;
   ynumbox = tybox;
   fsize = tfsize;
+  xAxisLabel = txAxisLabel;
+  yAxisLabel = tyAxisLabel;
   
   font = createFont(tFont,36, true); //36 point, anti-aliasing on
   textFont(font,fsize); //specify font & size for the next text command
@@ -50,7 +55,6 @@ class BoxGraph {
   m=(topCornerY-lowerLeft.y)/(ymax-ymin);
   zz.y = lowerLeft.y + m*(0-ymin);
   pt(lowerLeft.x+zz.x,lowerLeft.y+zz.y,10,red);
-  println(zz.x,"  ",zz.y);
   v = new PVector();
   } //end constructor
   
@@ -77,6 +81,22 @@ class BoxGraph {
     text(xnumber,tix-xnlen*.005*width,lowerLeft.y+.04*height);
   } //end for
   
+  //xAxisLabel
+  int len = xAxisLabel.length();
+  text(xAxisLabel, width/2-len*fsize/5, lowerLeft.y + .08*height); 
+  
+  //yAxisLabel
+  len = yAxisLabel.length();
+  float xloc = lowerLeft.x -(fsize/scale)*2; //width/2 - len*fsize/5;  //height/2 - len*fsize/5; -550
+  float yloc = lowerLeft.y-height*scale/2; //lowerLeft.y -.08*height;  //lowerLeft.y - .08*height; 670
+  println(xloc,lowerLeft.y+.08*height);
+  pushMatrix(); 
+  translate(xloc,yloc); //translates x,y to 0,0
+  rotate(-PI/2);  
+  text(yAxisLabel,0,0);
+  popMatrix();
+  
+  
   //draw the y-axis tic marks
   //determine the maximum ynumber length
      int nlen = numlen(ymin,ymax,ynumbox);
@@ -92,12 +112,12 @@ class BoxGraph {
   } //end for
   } //end function
   
-  void plotxy(float x,float y, color col){
+  void plotxy(float x,float y, float size, color col){
     m=(rt.x-lowerLeft.x)/(xmax-xmin);
     x=zz.x + m*x  ;
     m=(topCornerY-lowerLeft.y)/(ymax-ymin);    
     y = zz.y+m*y;
-    pt(x,y,1,col);
+    pt(x,y,size,col);
   }// end plotxy
   
 } //end class

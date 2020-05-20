@@ -16,13 +16,13 @@ color blue = #0000ff;
 
 void setup(){
   size(1800,1000);
-  box1 = new BoxGraph(scale,xmin,xmax,xnumbox,ymin,ymax,ynumbox,"Tahoma",fsize);
+  box1 = new BoxGraph(scale,xmin,xmax,xnumbox,ymin,ymax,ynumbox,"Tahoma",fsize, "x-axis","y-axis");
   background(255);
   box1.theBox();
   for(int i=0;i<100;i++){  //generate 100 pts //<>//
     float x = i*(4*PI/100);
     float y = sin(x);
-    box1.plotxy(x,y,blue);
+    box1.plotxy(x,y,5,red);
     
   } //end for
 } //end setup
